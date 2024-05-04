@@ -1,0 +1,33 @@
+Install awscli,eksctl
+Deploying in eks
+----------------
+1)build docker image
+2)create repo in ecr
+3)push the image to ecr
+for accessing docker in aws,
+create IAM user, and get secret key and access key
+aws configure(IAM user-secret key)
+Accesskey
+secret key
+region
+output:none
+then login,
+execute the push commands shown in ecr.
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125594850.dkr.ecr.us-east-1.amazonaws.com
+
+tag image
+push - ecr -URI
+
+4)to create cluster,
+eksctl create cluster --name eks-cluster --version=1.29 --nodes=1 --node-type=t2.small --region=us-east-2
+
+5)aws eks --region us-east-2 update-kubeconfig --name eks-cluster
+
+6)kubectl apply -f deployment.yaml
+7kubectl apply -f service.yaml
+8)kubectl get deployments
+9)kubectl get svc
+10)get the loadbalancer url,and with this access your application in the browser
+
+
